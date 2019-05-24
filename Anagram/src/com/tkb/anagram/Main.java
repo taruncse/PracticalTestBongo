@@ -15,7 +15,7 @@ public class Main {
         System.out.println("Enter second String");
         String secondString = sc.nextLine();
 
-        if (isAnagram(firstString, secondString)){
+        if (Anagram.isAnagram(firstString, secondString)){
             System.out.println(firstString+" and "+secondString+" two strings are anagram");
         } else{
             System.out.println(firstString+" and "+secondString+" two strings are not anagram");
@@ -23,37 +23,4 @@ public class Main {
 }
 
     // Anagram checker
-    static boolean isAnagram(String firstString, String secondString)
-    {
-        if (firstString == null || secondString == null || firstString.length()==0 || secondString.length()==0 ||
-                (firstString.length() != secondString.length()))
-            return false;
-
-
-        int ARRAY_COUNT = 256;
-
-        char firstArray[] = firstString.toLowerCase().toCharArray();
-        char secondArray[] = secondString.toLowerCase().toCharArray();
-
-
-        if (firstArray.length != secondArray.length)
-            return false;
-
-        int firstCounter[] = new int[ARRAY_COUNT];
-        Arrays.fill(firstCounter, 0); // set default value
-
-        int secondCounter[] = new int[ARRAY_COUNT];
-        Arrays.fill(secondCounter, 0); // set default value
-
-        for (int i = 0; i < firstArray.length && i < secondArray.length; i++) {
-            firstCounter[firstArray[i]]++;
-            secondCounter[secondArray[i]]++;
-        }
-
-        for (int j = 0; j < ARRAY_COUNT; j++)
-            if (firstCounter[j] != secondCounter[j]) // match the count values
-                return false;
-
-        return true;
-    }
 }
