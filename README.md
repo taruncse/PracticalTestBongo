@@ -2,7 +2,7 @@
 
 
 
-# 1) Write a function that detects if two strings are anagram e.g. ‘bleat’ and ‘table’ are anagrams but ‘eat’ and ‘tar’ are not.
+# Q1) Write a function that detects if two strings are anagram e.g. ‘bleat’ and ‘table’ are anagrams but ‘eat’ and ‘tar’ are not.
 
 Answer : 
 
@@ -115,7 +115,7 @@ public class AnagramTest extends Anagram {
 
 ```
 
-# 2) Explain the design pattern used in following:
+# Q2) Explain the design pattern used in following:
 ```
 interface Vehicle {
 	int set_num_of_wheels()
@@ -123,7 +123,7 @@ interface Vehicle {
 	boolean has_gas()
 }
 ```
-# a) Explain how can you use the pattern to create car and plane class?
+# 2a) Explain how can you use the pattern to create car and plane class?
 
 Answer : 
 
@@ -207,6 +207,120 @@ public class Main {
         Vehicle car = vehicleProvider.getCar();
         printValue(car);
 
+    }
+
+    private static void printValue(Vehicle vehicle){
+        System.out.print(vehicle.getClass().getSimpleName()+":\n Has gas: "+vehicle.has_gas()+
+                "\n Number of Passengers: "+vehicle.set_num_of_passengers()+
+                "\n Number of wheels: "+vehicle.set_num_of_wheels()+"\n");
+    }
+}
+```
+# 2b) Use a different design pattern for this solution.
+
+Answer : For the different solution , I would use *Simple factory pattern* . Because , a interface is given to build two types of
+object like Car and Plane. This types of scenario will be a perfect match with *Simple factory pattern* . And we would be able to change 
+the value of the object on the fly.
+
+Given Interface Vehicle
+```
+public interface Vehicle {
+    int set_num_of_wheels();
+    int set_num_of_passengers();
+    boolean has_gas();
+}
+```
+
+* Car class
+```
+import basic.Vehicle;
+
+public class Car implements Vehicle {
+    int num_of_wheels,num_of_passengers;
+    boolean has_gas;
+    public Car(int num_of_passengers, int num_of_wheels, boolean has_gas){
+        this.num_of_passengers = num_of_passengers;
+        this.num_of_wheels = num_of_wheels;
+        this.has_gas = has_gas;
+    }
+    @Override
+    public int set_num_of_wheels() {
+        return num_of_wheels;
+    }
+
+    @Override
+    public int set_num_of_passengers() {
+        return num_of_passengers;
+    }
+
+    @Override
+    public boolean has_gas() {
+        return has_gas;
+    }
+}
+```
+* Plane class
+
+```
+import basic.Vehicle;
+
+public class Plane implements Vehicle {
+
+    int num_of_wheels,num_of_passengers;
+    boolean has_gas;
+    public Plane(int num_of_passengers, int num_of_wheels, boolean has_gas){
+        this.num_of_passengers = num_of_passengers;
+        this.num_of_wheels = num_of_wheels;
+        this.has_gas = has_gas;
+    }
+    @Override
+    public int set_num_of_wheels() {
+        return num_of_wheels;
+    }
+
+    @Override
+    public int set_num_of_passengers() {
+        return num_of_passengers;
+    }
+
+    @Override
+    public boolean has_gas() {
+        return has_gas;
+    }
+}
+```
+
+* Factory class
+```
+import basic.Vehicle;
+
+public class VehicleFactory {
+    public static Vehicle createCar ( int num_of_wheels,int num_of_passengers,
+            boolean has_gas){
+        return new Car(num_of_passengers, num_of_wheels, has_gas);
+    }
+
+    public static Vehicle createPlane ( int num_of_wheels,int num_of_passengers,
+                                      boolean has_gas){
+        return new Plane(num_of_passengers, num_of_wheels, has_gas);
+    }
+}
+```
+
+Main entry point to test the pattern
+
+```
+import factory.VehicleFactory;
+
+public class Main {
+
+    public static void main(String[] args) {
+     
+        Vehicle car = VehicleFactory.createCar(4,6,true);
+        printValue(car);
+
+        Vehicle plane = VehicleFactory.createPlane(6,200,false);
+        printValue(plane);
     }
 
     private static void printValue(Vehicle vehicle){
