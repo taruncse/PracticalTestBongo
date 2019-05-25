@@ -16,9 +16,6 @@ public class Anagram {
         char secondArray[] = secondString.toLowerCase().toCharArray();
 
 
-        if (firstArray.length != secondArray.length)
-            return false;
-
         int firstCounter[] = new int[ARRAY_COUNT];
         Arrays.fill(firstCounter, 0); // set default value
 
