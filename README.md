@@ -28,7 +28,7 @@ public class Anagram {
         int secondCounter[] = new int[ARRAY_COUNT];
         Arrays.fill(secondCounter, 0); // set default value
 
-        for (int i = 0; i < firstArray.length && i < secondArray.length; i++) {
+        for (int i = 0; i < firstArray.length; i++) {
             firstCounter[firstArray[i]]++;
             secondCounter[secondArray[i]]++;
         }
@@ -81,31 +81,31 @@ public class AnagramTest extends Anagram {
 
     @Test
     public void emptyStringTest() {
-        boolean testEmpty = Anagram.isAnagram("","");
-        assertEquals(false,testEmpty);
+        boolean testEmptyString = Anagram.isAnagram("","");
+        assertEquals(false,testEmptyString);
     }
 
     @Test
     public void emptyStringAndNullTest() {
-        boolean testEmpty = Anagram.isAnagram(null,"");
-        assertEquals(false,testEmpty);
+        boolean testEmptyAndNullString = Anagram.isAnagram(null,"");
+        assertEquals(false,testEmptyAndNullString);
     }
     @Test
     public void anagramTest() {
-        boolean testEmpty = Anagram.isAnagram("bleat","table");
-        assertEquals(true,testEmpty);
+        boolean testAnagram = Anagram.isAnagram("bleat","table");
+        assertEquals(true,testAnagram);
     }
 
     @Test
     public void notAnagramTest() {
-        boolean testEmpty = Anagram.isAnagram("eat","tar");
-        assertEquals(false,testEmpty);
+        boolean testWrongAnagram = Anagram.isAnagram("eat","tar");
+        assertEquals(false,testWrongAnagram);
     }
     @Test
     public void largeStringTest() {
-        boolean testEmpty = Anagram.isAnagram("Hi this is a large string to test anagram. If the test is fails then there is a problem"
+        boolean testLargeText = Anagram.isAnagram("Hi this is a large string to test anagram. If the test is fails then there is a problem"
                 ,"Hi this is a large string to test anagram. If the test is fails then there is a problem");
-        assertEquals(true,testEmpty);
+        assertEquals(true,testLargeText);
     }
 }
 
