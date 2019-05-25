@@ -420,7 +420,7 @@ public interface PlayerInterface {
 * Update view interface
 
 ```
-public interface Update {
+public interface UpdateView {
     void update(String value);
 }
 ```
@@ -512,7 +512,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Update{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, UpdateView{
 
     Button btnPlay,btnBack,btnForward;
     TextView txtDisplay;
