@@ -4,6 +4,8 @@
 
 # 1) Write a function that detects if two strings are anagram e.g. ‘bleat’ and ‘table’ are anagrams but ‘eat’ and ‘tar’ are not.
 
+* Anagram.java class
+```
 import java.util.Arrays;
 
 public class Anagram {
@@ -40,8 +42,9 @@ public class Anagram {
         return true;
     }
 }
-
-
+```
+* Maing method , from where the Anagram method will be called
+```
 public class Main {
 
     public static void main(String[] args) {
@@ -61,3 +64,4 @@ public class Main {
         }
     }
 }
+```
